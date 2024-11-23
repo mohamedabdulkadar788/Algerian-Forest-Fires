@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FWI Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #0056b3;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FWI Prediction</h1>
+        <form action="{{ url_for('predict_datapoint') }}" method="post">
+            <input type="number" name="Temperature" placeholder="Temperature (°C)" required step="any" /><br>
+            <input type="number" name="RH" placeholder="Relative Humidity (%)" required step="any" /><br>
+            <input type="number" name="Ws" placeholder="Wind Speed (km/h)" required step="any" /><br>
+            <input type="number" name="Rain" placeholder="Rainfall (mm)" required step="any" /><br>
+            <input type="number" name="FFMC" placeholder="Fine Fuel Moisture Code" required step="any" /><br>
+            <input type="number" name="DMC" placeholder="Duff Moisture Code" required step="any" /><br>
+            <input type="number" name="ISI" placeholder="Initial Spread Index" required step="any" /><br><br>
+            
+            <label for="Classes">Fire Status:</label>
+            <select name="Classes" id="Classes" required>
+                <option value="" disabled selected>Select Fire/Not Fire</option>
+                <option value="0">No Fire</option>
+                <option value="1">Fire</option>
+            </select><br><br>
+
+            <label for="Region">Region:</label>
+            <select name="Region" id="Region" required>
+                <option value="" disabled selected>Select Region</option>
+                <option value="0">Bejaia Region</option>
+                <option value="1">Sidi-Bel Region</option>
+            </select><br><br>
+            
+            <button type="submit">Predict</button>
+        </form>
+        <h2>
+            The FWI value Prediction is {{ result }}
+        </h2>
+    </div>
+</body>
+</html>
