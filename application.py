@@ -8,7 +8,7 @@ application = Flask(__name__)
 app = application
 
 # Load the trained regression model and scaler
-regressor_model = pickle.load(open('models/ridgecls.pkl', 'rb'))
+regressor_model = pickle.load(open('models/ridge.pkl', 'rb'))
 standard_scaler = pickle.load(open('models/scaler.pkl', 'rb'))
 
 # Route for home page
